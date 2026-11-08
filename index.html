@@ -316,7 +316,17 @@ body{overflow-x:hidden;overflow-x:clip}
 
 /* ===== hero outline watermark: centred and sized to fit every screen ===== */
 .hero::before{content:"PORTFOLIO";position:absolute!important;left:50%!important;right:auto!important;top:50%!important;transform:translate(-50%,-50%)!important;font-size:clamp(40px,12.5vw,200px)!important;white-space:nowrap;text-align:center;line-height:1;max-width:100%}
-.vfail{font-size:14px;color:var(--mut);margin:10px 4px 0}.vfail a{color:var(--red2);font-weight:600}</style></head><body>
+.vfail{font-size:14px;color:var(--mut);margin:10px 4px 0}.vfail a{color:var(--red2);font-weight:600}
+/* ===== phone-only: match desktop look (no heading background, watermark behind title, stats cells) ===== */
+@media (max-width:760px){
+ .lab{background:none!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important;padding:0!important;margin:0!important}
+ .hero::before{display:none!important}
+ h1{position:relative;isolation:isolate}
+ h1::before{content:"PORTFOLIO";position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);font-size:clamp(40px,16vw,80px);font-weight:800;letter-spacing:-.05em;line-height:1;color:transparent;-webkit-text-stroke:1px #ffffff26;white-space:nowrap;z-index:-1;pointer-events:none}
+ .strip div{padding:22px 18px;border-left:0;border-top:1px solid var(--line)}
+ .strip div:nth-child(-n+2){border-top:0}
+}
+</style></head><body>
 <nav class="top" aria-label="Sections"><div class="wrap"><span class="logo" aria-label="Magestix Solutions"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2412.00 1032.00" role="img" aria-label="Magestix Solutions" class="logo-svg"><title>Magestix Solutions</title><g transform="translate(0.000000,1032.000000) scale(0.100000,-0.100000)"
 fill="#e11d2b" >
 <path d="M10020 9270 c-20 -20 -41 -30 -60 -30 -19 0 -40 -10 -60 -30 -20 -20
