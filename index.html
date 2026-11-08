@@ -285,7 +285,38 @@ img,video{max-width:100%;height:auto}
  .gcards{grid-template-columns:1fr}
  .legend{grid-template-columns:1fr}
 }
-.hero{padding-left:24px!important;padding-right:24px!important}@media (max-width:760px){.hero{padding-left:18px!important;padding-right:18px!important}}</style></head><body>
+.hero{padding-left:24px!important;padding-right:24px!important}@media (max-width:760px){.hero{padding-left:18px!important;padding-right:18px!important}}
+/* ===== sticky section headings: stay under the header until their section ends ===== */
+body{overflow-x:hidden;overflow-x:clip}
+.lab{position:sticky;top:110px;align-self:start;z-index:5}
+@media (max-width:760px){
+ .lab{position:sticky!important;top:74px;background:rgba(11,11,13,.92);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);padding:10px 18px 8px;margin:0 -18px}
+ .lab .num{font-size:12px}
+ .lab .num::after{display:none}
+ .lab h2{font-size:22px;margin:2px 0 0;line-height:1.15}
+ .sec{padding-top:24px}
+}
+
+/* ===== phone fixes: contain content, scroll horizontal rows (desktop unchanged) ===== */
+@media (max-width:760px){
+ .sec{grid-template-columns:minmax(0,1fr)!important}
+ .sec>div{min-width:0;max-width:100%}
+ .mas{columns:1!important;width:100%}
+ .m{width:100%;max-width:100%}
+ .track{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;gap:14px;padding-bottom:12px}
+ .track>div{flex:0 0 78%;max-width:300px;scroll-snap-align:start}
+ .filt{display:flex;overflow-x:auto;flex-wrap:nowrap;-webkit-overflow-scrolling:touch}
+ .vgrid{grid-template-columns:minmax(0,1fr)!important}
+ .gcards{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+ .strip{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+ .legend{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+ .hi,.hi.flip{grid-template-columns:minmax(0,1fr)!important}
+ .rows,.ins{min-width:0}
+}
+
+/* ===== hero outline watermark: centred and sized to fit every screen ===== */
+.hero::before{content:"PORTFOLIO";position:absolute!important;left:50%!important;right:auto!important;top:50%!important;transform:translate(-50%,-50%)!important;font-size:clamp(40px,12.5vw,200px)!important;white-space:nowrap;text-align:center;line-height:1;max-width:100%}
+.vfail{font-size:14px;color:var(--mut);margin:10px 4px 0}.vfail a{color:var(--red2);font-weight:600}</style></head><body>
 <nav class="top" aria-label="Sections"><div class="wrap"><span class="logo" aria-label="Magestix Solutions"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2412.00 1032.00" role="img" aria-label="Magestix Solutions" class="logo-svg"><title>Magestix Solutions</title><g transform="translate(0.000000,1032.000000) scale(0.100000,-0.100000)"
 fill="#e11d2b" >
 <path d="M10020 9270 c-20 -20 -41 -30 -60 -30 -19 0 -40 -10 -60 -30 -20 -20
@@ -1045,4 +1076,18 @@ function cu(el){const n=+el.dataset.n,s=performance.now();const f=t=>{const p=Ma
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(!e.isIntersecting)return;const t=e.target;t.classList.add("in");t.querySelectorAll("[data-w]").forEach(u=>u.style.width=u.dataset.w+"%");t.querySelectorAll("[data-n]").forEach(cu);io.unobserve(t)}),{threshold:0});
 document.querySelectorAll(".rv,#stats,#stk,#stk2,#hl").forEach(el=>io.observe(el));
 cu({dataset:{n:D.length+12},set textContent(v){$("#heroN").textContent=v}});
-</script></body></html>
+</script><script>
+/* video fallback: retry once, then show an "Open video" link so the file is always reachable */
+document.querySelectorAll('#motion video').forEach(function(v){
+  var tries=0;
+  v.addEventListener('error',function(){
+    if(tries++<1){var s=v.getAttribute('src');v.src=s+(s.indexOf('?')>-1?'&':'?')+'r=2';v.load();return;}
+    if(v.parentNode.parentNode.querySelector('.vfail'))return;
+    var p=document.createElement('p');p.className='vfail';
+    p.appendChild(document.createTextNode('This video could not play in this browser. '));
+    var a=document.createElement('a');a.href=v.getAttribute('src');a.textContent='Open video';a.target='_blank';a.rel='noopener';
+    p.appendChild(a);v.parentNode.parentNode.appendChild(p);
+  });
+});
+</script>
+</body></html>
