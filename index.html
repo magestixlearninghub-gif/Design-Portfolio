@@ -491,13 +491,13 @@ l-120 0 -75 -75z m360 -90 l45 -46 0 -90 0 -90 -77 -75 c-77 -74 -77 -74 -133
 <header class="hero wrap">
 <span class="kicker">Magestix Solutions · Design Work 2026</span>
 <h1>Design<br>Portfolio</h1>
-<div class="meta"><p>A complete look at the social media designs we created for our clients, plus our own Magestix Solutions posts. What each one says, how it is built and where it is used.</p><div class="bigwrap"><div class="big" id="heroN">0</div><span>designs in this portfolio, made for four clients and our own Magestix Solutions work</span></div></div>
+<div class="meta"><p>A complete look at the social media designs we created for our clients, plus our own Magestix Solutions posts. What each one says, how it is built and where it is used.</p><div class="bigwrap"><div class="big" id="heroN">0</div><span>designs and videos in this portfolio, made for four clients and our own Magestix Solutions work</span></div></div>
 </header>
 <div class="mq" id="mq" aria-hidden="true"></div>
 
 <main class="wrap">
 <section class="sec rv" id="summary"><div class="lab"><div class="num">01</div><h2>In short</h2></div><div>
-<p class="lead sum">This portfolio shows <b>93 social media designs</b> made for <b>four clients</b>: <b>Munir Khanani Securities</b> (a Pakistan Stock Exchange brokerage), <b>FDM</b>, <b>Stock Bazar</b> and <b>Aryan’s Daisy Toys</b>, plus <b>our own Magestix Solutions</b> posts. They cover <b>product promotions, corporate news, daily market and political news</b> and <b>national and religious days</b>.</p>
+<p class="lead sum">This portfolio shows <b>93 social media designs and 12 videos</b> made for <b>four clients</b>: <b>Munir Khanani Securities</b> (a Pakistan Stock Exchange brokerage), <b>FDM</b>, <b>Stock Bazar</b> and <b>Aryan’s Daisy Toys</b>, plus <b>our own Magestix Solutions</b> posts. They cover <b>product promotions, corporate news, daily market and political news</b> and <b>national and religious days</b>.</p>
 <p class="lead" style="font-size:16px;margin:0 0 40px"><b>How to use this page:</b> jump to a section from the index above, filter the designs by client or content type, tap any design to view it full size, and open “Design notes” to see how it was built.</p>
 <div class="strip" id="stats"></div></div></section>
 
@@ -892,7 +892,7 @@ let fc="all",fk="all",ix=0;
 const th=D.map(d=>`<img src="${d.s}" alt="" decoding="async">`).join(""),rv=[...D].reverse().map(d=>`<img src="${d.s}" alt="" decoding="async">`).join("");
 $("#mq").innerHTML=`<div class="row">${th+th}</div><div class="row r">${rv+rv}</div>`;
 
-$("#stats").innerHTML=[[D.length,"Designs in this portfolio"],[4,"Content types: news, corporate, promo, special days"],[2,"Languages: English and Urdu"],[4,"Clients, plus our own Magestix Solutions work"]].map(x=>`<div><b data-n="${x[0]}">0</b><span>${x[1]}</span></div>`).join("");
+$("#stats").innerHTML=[[D.length+12,"Designs and videos in this portfolio"],[4,"Content types: news, corporate, promo, special days"],[2,"Languages: English and Urdu"],[4,"Clients, plus our own Magestix Solutions work"]].map(x=>`<div><b data-n="${x[0]}">0</b><span>${x[1]}</span></div>`).join("");
 
 const seg=(el,lgEl,rows)=>{const tot=rows.reduce((a,r)=>a+r[1],0);$(el).innerHTML=rows.map(r=>`<u data-w="${r[1]/tot*100}" style="background:${r[2]}" title="${r[0]}"></u>`).join("");$(lgEl).innerHTML=rows.map(r=>`<div><i style="background:${r[2]}"></i>${r[0]}<b>${r[1]}</b></div>`).join("")};
 seg("#stk","#lg",Object.keys(K).map(k=>[K[k][0],cnt(d=>d.c===k),K[k][1]]).sort((a,b)=>b[1]-a[1]));
@@ -922,5 +922,5 @@ addEventListener("scroll",()=>document.body.style.setProperty("--p",(scrollY/Mat
 function cu(el){const n=+el.dataset.n,s=performance.now();const f=t=>{const p=Math.min((t-s)/1400,1);el.textContent=Math.round(n*(1-Math.pow(1-p,3)));if(p<1)requestAnimationFrame(f)};requestAnimationFrame(f)}
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(!e.isIntersecting)return;const t=e.target;t.classList.add("in");t.querySelectorAll("[data-w]").forEach(u=>u.style.width=u.dataset.w+"%");t.querySelectorAll("[data-n]").forEach(cu);io.unobserve(t)}),{threshold:0});
 document.querySelectorAll(".rv,#stats,#stk,#stk2,#hl").forEach(el=>io.observe(el));
-cu({dataset:{n:D.length},set textContent(v){$("#heroN").textContent=v}});
+cu({dataset:{n:D.length+12},set textContent(v){$("#heroN").textContent=v}});
 </script></body></html>
